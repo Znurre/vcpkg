@@ -11,6 +11,7 @@ vcpkg_from_github(
 file(REMOVE_RECURSE "${SOURCE_PATH}/cmake/FindPCRE.cmake")
 
 string(COMPARE EQUAL "${VCPKG_CRT_LINKAGE}" "static" STATIC_CRT)
+string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" DYNAMIC_LIBRARY)
 
 set(REGEX_BACKEND OFF)
 set(USE_HTTPS OFF)
@@ -68,6 +69,7 @@ vcpkg_cmake_configure(
         -DREGEX_BACKEND=${REGEX_BACKEND}
         -DSTATIC_CRT=${STATIC_CRT}
         -DBUILD_CLI=OFF
+        -DBUILD_SHARED_LIBS=${DYNAMIC_LIBRARY}
         ${GIT2_FEATURES}
         ${GIT_OPTIONS}
 )
